@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option java_package = "io.clh.bookstore.author";
+import "google/protobuf/timestamp.proto";
+import "Entities.proto";
+
+service AuthorService {
+  rpc CreateAuthor(CreateAuthorRequest) returns (AuthorEntity);
+  rpc GetAllAuthors(GetAllAuthorsRequest) returns (stream AuthorEntity);
+  rpc GetAuthorById(AuthorByIdRequest) returns (GetAuthorByIdResponse);
+  rpc SetAuthorAvatarUrlById(AuthorAvatarUrlRequest) returns (AuthorEntity);
+}
+
+message GetAuthorByIdResponse{
+  AuthorEntity author = 1;
+  repeated Book books = 2;
+}
+
+message AuthorAvatarUrlRequest{
+  int64 author_id = 1;
+  string avatar_url = 2;
+}
+
+message AuthorByIdRequest{
+  int64 author_id = 1;
+}
+
+message CreateAuthorRequest {
+    AuthorEntity author = 1;
+}
+
+message GetAllAuthorsRequest {
+  optional int32 page = 1;
+}
+
+message GetAllAuthorsResponse {
+  int64 author_id = 1;
+  string name = 2;
+  string biography = 3;
+}

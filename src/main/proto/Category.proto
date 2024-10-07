@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "io.clh.bookstore.category";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "Entities.proto";
+
+service CategoryService {
+  rpc GetAllBooksByCategory (GetAllBooksByCategoryRequest) returns (stream Book);
+  rpc AddCategory (Category) returns (Category);
+  rpc DeleteCategory (DeleteCategoryRequest) returns (Category);
+  rpc GetAllCategories (google.protobuf.Empty) returns (stream Category);
+  rpc UpdateCategory (Category) returns (Category);
+  rpc GetCategoryById (GetCategoryByIdRequest) returns (Category);
+}
+
+message GetAllBooksByCategoryRequest {
+  int32 category_id = 1;
+}
+
+message DeleteCategoryRequest {
+  int32 category_id = 1;
+}
+
+message GetCategoryByIdRequest {
+  int64 category_id = 1;
+}

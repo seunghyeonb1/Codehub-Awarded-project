@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option java_package = "io.clh.bookstore.bookstore";
+import "google/protobuf/timestamp.proto";
+import "Entities.proto";
+
+service BookService {
+  rpc CreateBook(CreateBookRequest) returns (CreateBookResponse);
+  rpc GetBookById(GetBookByIdRequest) returns (GetBookByIdResponse);
+  rpc GetAllBooks(GetAllBooksRequest) returns (stream Book);
+  rpc UpdateBook(UpdateBookRequest) returns (UpdateBookResponse);
+  rpc DeleteBook(DeleteBookRequest) returns (DeleteBookResponse);
+}
+
+message DeleteBookRequest{
+  Book book = 1;
+}
+
+message DeleteBookResponse{
+  Book book = 1;
+}
+
+message CreateBookRequest {
+  Book book = 1;
+}
+
+message GetBookByIdRequest {
+  int64 id = 1;
+}
+
+message GetAllBooksRequest {
+  optional int32 page = 1;
+}
+
+message UpdateBookRequest {
+  Book book = 1;
+}
+
+message CreateBookResponse {
+  Book book = 1;
+}
+
+message GetBookByIdResponse {
+  Book book = 1;
+}
+
+message UpdateBookResponse {
+  Book book = 1;
+}
+

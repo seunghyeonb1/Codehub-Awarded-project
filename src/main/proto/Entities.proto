@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_package = "io.clh.bookstore.entities";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+message Book {
+  int64 book_id = 1;
+  string title = 2;
+  string description = 3;
+  string isbn = 4;
+  google.protobuf.Timestamp publicationDate = 5;
+  double price = 6;
+  int32 stockQuantity = 7;
+  repeated int64 authorIds = 8;
+  string avatar_url = 9;
+}
+
+message Category {
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  repeated Book books = 4;
+}
+
+message AuthorEntity {
+  int64 author_id = 1;
+  string name = 2;
+  string biography = 3;
+  string avatar_url = 4;
+}
